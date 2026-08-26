@@ -87,6 +87,7 @@ O símbolo é um **ponto de foco atravessando uma órbita incompleta**, com incl
 - Metadados, tags e cartões incorporam linguagem de bancada de estudos por meio de cantos assimétricos, marcação pontilhada, superfícies de papel e trajetórias orbitais discretas.
 - Estados de avanço relevantes usam anéis parciais, pontos de órbita e trajetórias pontilhadas; barras lineares só aparecem para contexto secundário e de baixa ênfase.
 - Os marcadores das matérias se comportam como etiquetas de papel em uma mesa de estudos, preservando pequenas assimetrias e diferenciação de cor por contexto.
+- Calendários e grades usam percursos pontilhados, pontos de órbita e superfícies de papel com recortes discretos; azul de impulso indica somente o dia, turma ou ação em foco.
 
 ---
 

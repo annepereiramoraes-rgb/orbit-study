@@ -38,6 +38,7 @@ const navItems = [
   { label: "Minha trilha", icon: Target, href: "/trilhas" },
   { label: "Matérias", icon: BookOpen, href: "/trilhas" },
   { label: "Calendário", icon: CalendarDays, href: "/calendario" },
+  { label: "Horários", icon: Clock3, href: "/horarios" },
 ];
 
 const trailItems = [

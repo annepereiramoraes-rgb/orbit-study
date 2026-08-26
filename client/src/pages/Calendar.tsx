@@ -27,7 +27,7 @@ function eventTone(kind: SchoolEventKind) {
   return `calendar-event--${kind}`;
 }
 
-function MonthGrid({ month }: { month: number }) {
+function MonthGrid({ month, currentDate }: { month: number; currentDate: Date }) {
   const year = 2026;
   const firstWeekday = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -44,7 +44,7 @@ function MonthGrid({ month }: { month: number }) {
       <div className="month-weekdays">{weekdayNames.map((day, index) => <span key={`${day}-${index}`}>{day}</span>)}</div>
       <div className="month-days">
         {grid.map((day, index) => day ? (
-          <span className={`calendar-day ${eventsByDay[day]?.length ? "calendar-day--marked" : ""}`} key={day}>
+          <span className={`calendar-day ${eventsByDay[day]?.length ? "calendar-day--marked" : ""} ${currentDate.getFullYear() === year && currentDate.getMonth() === month && currentDate.getDate() === day ? "calendar-day--today" : ""}`} key={day}>
             {day}
             <i className={eventsByDay[day]?.[0] ? `day-dot day-dot--${eventsByDay[day][0]}` : ""} />
           </span>
@@ -57,6 +57,8 @@ function MonthGrid({ month }: { month: number }) {
 export default function Calendar() {
   const [filter, setFilter] = useState<"todos" | SchoolEventKind>("todos");
   const filteredEvents = useMemo(() => schoolEvents.filter((event) => filter === "todos" || event.kind === filter), [filter]);
+  const currentDate = useMemo(() => new Date(), []);
+  const currentMonthLabel = new Intl.DateTimeFormat("pt-BR", { month: "long", day: "numeric" }).format(currentDate);
 
   return (
     <OrbitFrame current="Calendário">
@@ -67,7 +69,7 @@ export default function Calendar() {
         </div>
 
         <div className="calendar-spotlight">
-          <div className="calendar-spotlight-copy"><span className="spotlight-chip"><Sparkles size={14} /> março em foco</span><h2>Semana de combate à violência contra a mulher</h2><p>16 a 20 de março · organize leituras, rodas de conversa e tarefas que conversem com a programação da escola.</p><Button onClick={() => setFilter("comunidade")}>Ver eventos da semana <ChevronRight size={16} /></Button></div>
+          <div className="calendar-spotlight-copy"><span className="spotlight-chip"><Sparkles size={14} /> hoje · {currentMonthLabel}</span><h2>O calendário inteiro cabe na sua trajetória.</h2><p>O dia atual está marcado em azul nos 12 meses. Consulte os eventos letivos e antecipe as semanas que pedem mais atenção.</p><Button onClick={() => setFilter("periodo")}>Ver períodos letivos <ChevronRight size={16} /></Button></div>
           <div className="calendar-stamp"><span>201</span><small>dias letivos<br />no ano</small><i /></div>
         </div>
 
@@ -76,7 +78,7 @@ export default function Calendar() {
             <span className="calendar-margin-note">prazos não precisam surpreender</span>
             <i className="calendar-orbit-note" aria-hidden="true" />
             <div className="calendar-board-top"><div><p className="eyebrow">NAVEGUE PELO ANO</p><h2>Calendário acadêmico</h2></div><div className="calendar-controls"><button type="button" aria-label="Mês anterior"><ChevronLeft size={17} /></button><span>2026</span><button type="button" aria-label="Próximo mês"><ChevronRight size={17} /></button></div></div>
-            <div className="month-grid-row"><MonthGrid month={2} /><MonthGrid month={4} /><MonthGrid month={8} /></div>
+            <div className="month-grid-row month-grid-row--year">{monthNames.map((_, month) => <MonthGrid key={month} month={month} currentDate={currentDate} />)}</div>
             <div className="calendar-legend"><span><i className="day-dot day-dot--periodo" /> trimestre</span><span><i className="day-dot day-dot--prova" /> avaliação</span><span><i className="day-dot day-dot--feriado" /> feriado</span><span><i className="day-dot day-dot--comunidade" /> comunidade</span></div>
           </section>
 

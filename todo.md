@@ -1,5 +1,8 @@
 # Expansão Orbit — calendário e trilhas
 
+- [x] Extrair as turmas e aulas da grade de horários anexada.
+- [x] Atualizar o calendário com 12 meses e destaque da data atual.
+- [x] Organizar os horários em visualizações navegáveis por turma.
 - [x] Investigar e corrigir a tela em branco reportada na interface.
 - [x] Organizar e entregar o pacote atualizado de arquivos-fonte do Orbit.
 

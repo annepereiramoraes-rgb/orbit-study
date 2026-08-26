@@ -8,6 +8,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Calendar from "./pages/Calendar";
 import StudyTrail from "./pages/StudyTrail";
+import Timetable from "./pages/Timetable";
 
 
 function Router() {
@@ -16,6 +17,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/calendario"} component={Calendar} />
       <Route path={"/trilhas"} component={StudyTrail} />
+      <Route path={"/horarios"} component={Timetable} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

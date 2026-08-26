@@ -6,6 +6,7 @@ import {
   Bell,
   BookOpen,
   CalendarDays,
+  Clock3,
   ChevronRight,
   CircleHelp,
   LayoutGrid,
@@ -19,7 +20,7 @@ import { useLocation } from "wouter";
 import { toast } from "sonner";
 
 type OrbitFrameProps = {
-  current: "Visão geral" | "Trilhas" | "Calendário";
+  current: "Visão geral" | "Trilhas" | "Calendário" | "Horários";
   children: ReactNode;
 };
 
@@ -28,6 +29,7 @@ const navItems = [
   { label: "Minha trilha", icon: Target, href: "/trilhas" },
   { label: "Matérias", icon: BookOpen, href: "/trilhas" },
   { label: "Calendário", icon: CalendarDays, href: "/calendario" },
+  { label: "Horários", icon: Clock3, href: "/horarios" },
 ];
 
 function OrbitIcon({ size = "normal" }: { size?: "normal" | "small" }) {
@@ -50,7 +52,8 @@ export default function OrbitFrame({ current, children }: OrbitFrameProps) {
   function isActive(label: string) {
     return (current === "Visão geral" && label === "Visão geral") ||
       (current === "Trilhas" && label === "Minha trilha") ||
-      (current === "Calendário" && label === "Calendário");
+      (current === "Calendário" && label === "Calendário") ||
+      (current === "Horários" && label === "Horários");
   }
 
   return (

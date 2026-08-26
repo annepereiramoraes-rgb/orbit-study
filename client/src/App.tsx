@@ -1,16 +1,21 @@
 import { Toaster } from "@/components/ui/sonner";
+/** ORBIT — Caderno Orbital: rotas da central acadêmica, calendário e trilhas. */
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import Calendar from "./pages/Calendar";
+import StudyTrail from "./pages/StudyTrail";
 
 
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/calendario"} component={Calendar} />
+      <Route path={"/trilhas"} component={StudyTrail} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

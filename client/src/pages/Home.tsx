@@ -31,12 +31,13 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "wouter";
 
 const navItems = [
-  { label: "Visão geral", icon: LayoutGrid },
-  { label: "Minha trilha", icon: Target },
-  { label: "Matérias", icon: BookOpen },
-  { label: "Calendário", icon: CalendarDays },
+  { label: "Visão geral", icon: LayoutGrid, href: "/" },
+  { label: "Minha trilha", icon: Target, href: "/trilhas" },
+  { label: "Matérias", icon: BookOpen, href: "/trilhas" },
+  { label: "Calendário", icon: CalendarDays, href: "/calendario" },
 ];
 
 const trailItems = [
@@ -60,6 +61,7 @@ function OrbitIcon({ size = "normal" }: { size?: "normal" | "small" }) {
 }
 
 export default function Home() {
+  const [, setLocation] = useLocation();
   const [activeNav, setActiveNav] = useState("Visão geral");
   const [sessionActive, setSessionActive] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(25 * 60);
@@ -116,13 +118,13 @@ export default function Home() {
         </div>
 
         <nav className="nav-list" aria-label="Navegação principal">
-          {navItems.map(({ label, icon: Icon }) => (
+          {navItems.map(({ label, icon: Icon, href }) => (
             <button
               key={label}
               onClick={() => {
                 setActiveNav(label);
                 setMobileNavOpen(false);
-                if (label !== "Visão geral") toast(`${label} estará disponível no próximo ciclo do protótipo.`);
+                setLocation(href);
               }}
               className={`nav-item ${activeNav === label ? "nav-item--active" : ""}`}
               type="button"
@@ -177,7 +179,7 @@ export default function Home() {
               <p className="eyebrow">SEU RITMO, LUÍSA</p>
               <h1>Vamos tirar uma coisa <em>da sua frente.</em></h1>
             </div>
-            <button className="today-button" type="button" onClick={() => toast("Seu planejamento de hoje está aberto na visão geral.")}>
+            <button className="today-button" type="button" onClick={() => setLocation("/calendario")}>
               <CalendarDays size={17} /> Hoje <ChevronRight size={16} />
             </button>
           </div>
@@ -253,7 +255,7 @@ export default function Home() {
                   <p className="eyebrow">SUA TRILHA</p>
                   <h2>O que vem depois.</h2>
                 </div>
-                <button type="button" onClick={() => toast("A visão de trilha será detalhada no próximo ciclo.")}>Ver tudo <ArrowRight size={15} /></button>
+                <button type="button" onClick={() => setLocation("/trilhas")}>Ver tudo <ArrowRight size={15} /></button>
               </div>
               <div className="trail-layout">
                 <ol className="trail-list">
@@ -279,9 +281,9 @@ export default function Home() {
                 <button className="icon-button icon-button--outlined" type="button" onClick={() => setQuickAddOpen(true)} aria-label="Adicionar pendência"><Plus size={18} /></button>
               </div>
               <div className="subject-grid">
-                <button type="button" className="subject-tile tile-blue" onClick={() => toast("Física: 3 pendências e 1 material novo.")}><span className="tile-icon"><Command size={20} /></span><strong>Física</strong><small>3 pendências</small><i>58%</i></button>
-                <button type="button" className="subject-tile tile-coral" onClick={() => toast("História: você concluiu o resumo de hoje.")}><span className="tile-icon"><GraduationCap size={21} /></span><strong>História</strong><small>1 etapa hoje</small><i>74%</i></button>
-                <button type="button" className="subject-tile tile-yellow" onClick={() => toast("Linguagens: a redação é seu foco principal.")}><span className="tile-icon"><Sparkles size={20} /></span><strong>Linguagens</strong><small>em foco</small><i>89%</i></button>
+                <button type="button" className="subject-tile tile-blue" onClick={() => setLocation("/trilhas")}><span className="tile-icon"><Command size={20} /></span><strong>Física</strong><small>3 pendências</small><i>58%</i></button>
+                <button type="button" className="subject-tile tile-coral" onClick={() => setLocation("/trilhas")}><span className="tile-icon"><GraduationCap size={21} /></span><strong>História</strong><small>1 etapa hoje</small><i>74%</i></button>
+                <button type="button" className="subject-tile tile-yellow" onClick={() => setLocation("/trilhas")}><span className="tile-icon"><Sparkles size={20} /></span><strong>Linguagens</strong><small>em foco</small><i>89%</i></button>
               </div>
             </section>
           </div>

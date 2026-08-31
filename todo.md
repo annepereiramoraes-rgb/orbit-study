@@ -1,5 +1,7 @@
 # Expansão Orbit — calendário e trilhas
 
+- [x] Criar e revisar o README.md do projeto.
+
 - [x] Extrair as turmas e aulas da grade de horários anexada.
 - [x] Atualizar o calendário com 12 meses e destaque da data atual.
 - [x] Organizar os horários em visualizações navegáveis por turma.

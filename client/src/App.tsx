@@ -1,8 +1,9 @@
-import { Toaster } from "@/components/ui/sonner";
 /** ORBIT — Caderno Orbital: rotas da central acadêmica, calendário e trilhas. */
+import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Router as WouterRouter, Switch } from "wouter";
+import { useHashLocation } from "wouter/use-hash-location";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -13,7 +14,8 @@ import Timetable from "./pages/Timetable";
 
 function Router() {
   return (
-    <Switch>
+    <WouterRouter hook={useHashLocation}>
+      <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/calendario"} component={Calendar} />
       <Route path={"/trilhas"} component={StudyTrail} />
@@ -21,7 +23,8 @@ function Router() {
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
-    </Switch>
+      </Switch>
+    </WouterRouter>
   );
 }
 

@@ -95,3 +95,23 @@ As próximas melhorias naturais são salvar trilhas por estudante, permitir sele
 ## Licença e origem dos dados
 
 Este repositório contém um protótipo de produto desenvolvido para o projeto Orbit. Os dados de calendário e horários exibidos na interface foram organizados a partir dos documentos fornecidos pela responsável pelo projeto e devem ser revisados pela instituição antes de qualquer uso operacional.
+
+## Publicação no GitHub Pages
+
+O repositório inclui o workflow `.github/workflows/deploy-pages.yml`. Depois de enviar alterações para a branch `main`, o GitHub Actions instala as dependências, verifica os tipos, gera o site estático e publica o artefato no GitHub Pages.
+
+Para ativar a publicação pela primeira vez, abra **Settings → Pages** no repositório, selecione **GitHub Actions** em *Build and deployment* e salve. Depois do workflow terminar, o endereço será:
+
+```text
+https://annepereiramoraes-rgb.github.io/orbit-study/
+```
+
+Como o GitHub Pages usa arquivos estáticos, as rotas internas usam hash routing. Para abrir uma página diretamente, use, por exemplo:
+
+```text
+https://annepereiramoraes-rgb.github.io/orbit-study/#/calendario
+https://annepereiramoraes-rgb.github.io/orbit-study/#/horarios
+https://annepereiramoraes-rgb.github.io/orbit-study/#/trilhas
+```
+
+A versão do GitHub Pages é uma apresentação estática do protótipo. Recursos que dependem de servidor, banco de dados, autenticação Manus ou proxy de armazenamento continuam disponíveis na hospedagem Manus, mas não são executados pelo GitHub Pages.
